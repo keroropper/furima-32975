@@ -1,24 +1,64 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| column       | type    | options     | 
+| :----------: | :-----: | :---------: | 
+| name         | string  | null: false | 
+| name_reading | string  | null: false | 
+| nickname     | string  | null: false | 
+| password     | string  | null: false | 
+| email        | string  | null: false | 
+| birthday     | integer | null: false |
 
-Things you may want to cover:
+### association
 
-* Ruby version
+has_many :items
+has_many :purchases
+has_one :address
 
-* System dependencies
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+| column   | type       | option      | 
+| :------: | :--------: | :---------: | 
+| text     | text       | null: false | 
+| describe | text       | null: false | 
+| price    | integer    | null: false | 
+| user_id  | references |             | 
 
-* Database initialization
+### association
 
-* How to run the test suite
+- belongs_to :users
+- has_one :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## addressesテーブル
 
-* Deployment instructions
+| column        | type       | option      | 
+| :-----------: | :--------: | :---------: | 
+| post_code     | string     | null: false | 
+| prefecture    | integer    | null: false | 
+| city          | string     | null: false | 
+| house_number  | string     | null: false | 
+| building_name | string     |             | 
+| phone_number  | integer    | null: false | 
+| user_id       | references |             | 
+| item_id       | references |             | 
 
-* ...
+### association
+
+- belongs_to :users
+- has_many :order
+
+## ordersテーブル
+
+| column  | type       | option      | 
+| :-----: | :--------: | :---------: | 
+| price   | integer    | null: false | 
+| user_id | references |             | 
+| item_id | references |             | 
+
+### association
+
+- belongs_to :users
+- belongs_to :items
+- belongs_to :addresses
+
