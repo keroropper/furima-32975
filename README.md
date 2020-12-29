@@ -18,17 +18,17 @@ has_many :orders
 
 ## itemsテーブル
 
-| column      | type       | option            | 
-| :---------: | :--------: | :---------------: | 
-| text        | string     | null: false       | 
-| describe    | text       | null: false       | 
-| category_id | integer    | null: false       | 
-| status_id   | integer    | null: false       | 
-| charge_id   | integer    | null: false       | 
-| publisher_id| integer    | null: false       | 
-| day_id      | integer    | null: false       | 
-| price       | integer    | null: false       | 
-| user        | references | foreign_key: true | 
+| column       | type       | option            | 
+| :----------: | :--------: | :---------------: | 
+| text         | string     | null: false       | 
+| describe     | text       | null: false       | 
+| category_id  | integer    | null: false       | 
+| status_id    | integer    | null: false       | 
+| charge_id    | integer    | null: false       | 
+| prefecture_id| integer    | null: false       | 
+| day_id       | integer    | null: false       | 
+| price        | integer    | null: false       | 
+| user         | references | foreign_key: true | 
 
 ### association
 
@@ -40,6 +40,7 @@ has_many :orders
 | column        | type       | option            | 
 | :-----------: | :--------: | :---------------: | 
 | post_code     | string     | null: false       | 
+| prefecture_id | integer    | null: false       | 
 | city          | string     | null: false       | 
 | house_number  | string     | null: false       | 
 | building_name | string     |                   | 
