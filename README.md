@@ -1,15 +1,15 @@
 ## usersテーブル
 
-| column             | type    | options     | 
-| :----------------: | :-----: | :---------: | 
-| first_name         | string  | null: false | 
-| last_name          | string  | null: false | 
-| first_name_kana    | string  | null: false | 
-| last_name_kana     | string  | null: false | 
-| nickname           | string  | null: false | 
-| encrypted_password | string  | null: false | 
-| email              | string  | null: false | 
-| birthday           | date    | null: false |
+| column             | type    | options                  | 
+| :----------------: | :-----: | :----------------------: | 
+| first_name         | string  | null: false              | 
+| last_name          | string  | null: false              | 
+| first_name_kana    | string  | null: false              | 
+| last_name_kana     | string  | null: false              | 
+| nickname           | string  | null: false              | 
+| encrypted_password | string  | null: false              | 
+| email              | string  | null: false, unique: true| 
+| birthday           | date    | null: false              |
 
 ### association
 
@@ -26,7 +26,7 @@ has_many :orders
 | status_id   | integer    | null: false       | 
 | charge_id   | integer    | null: false       | 
 | publisher_id| integer    | null: false       | 
-| days_id     | integer    | null: false       | 
+| day_id      | integer    | null: false       | 
 | price       | integer    | null: false       | 
 | user        | references | foreign_key: true | 
 
@@ -40,7 +40,6 @@ has_many :orders
 | column        | type       | option            | 
 | :-----------: | :--------: | :---------------: | 
 | post_code     | string     | null: false       | 
-| prefecture_id | integer    | null: false       | 
 | city          | string     | null: false       | 
 | house_number  | string     | null: false       | 
 | building_name | string     |                   | 
