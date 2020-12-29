@@ -13,4 +13,5 @@ class User < ApplicationRecord
   validates :birthday           
   validates :email                    
 end
-  validates :password,         format: { with: /\A[a-zA-Z0-9]+\z/, message: 'Password Include both letters and numbers' }                 
+  validates :password,         format: { with: /\A[a-zA-Z0-9]+\z/, message: 'Password Include both letters and numbers' }  
+end               
