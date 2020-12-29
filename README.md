@@ -20,7 +20,7 @@ has_many :orders
 
 | column      | type       | option            | 
 | :---------: | :--------: | :---------------: | 
-| text        | text       | null: false       | 
+| text        | string     | null: false       | 
 | describe    | text       | null: false       | 
 | category_id | integer    | null: false       | 
 | status_id   | integer    | null: false       | 
