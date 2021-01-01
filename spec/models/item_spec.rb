@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
+    @user = FactoryBot.create(:user)
   end
 
   describe '商品を出品する' do
     context '商品を出品できる場合' do
-      it 'text、describe、category_id、status_id、charge_id、prefecture_id、day_id、price、itemがあれば出品できる' do
+      it 'text、describe、category_id、status_id、charge_id、prefecture_id、day_id、price、imageがあれば出品できる' do
         expect(@item).to be_valid
       end
       it 'priceが300なら保存できる' do
@@ -99,6 +100,11 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Out of setting range")
+      end
+      it 'imageが空だと出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'ユーザーが紐付いていなければ出品できない' do
         @item.user = nil
