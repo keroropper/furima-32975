@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it 'priceが9,999,999なら保存できる' do
-        @item.price = 9999999
+        @item.price = 9_999_999
         expect(@item).to be_valid
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe Item, type: :model do
       it 'category_idが1だと出品できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it 'status_idが空だと出品できない' do
         @item.status_id = ''
@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
       it 'status_idが1だと出品できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status Select")
+        expect(@item.errors.full_messages).to include('Status Select')
       end
       it 'charge_idが空だと出品できない' do
         @item.charge_id = ''
@@ -59,7 +59,7 @@ RSpec.describe Item, type: :model do
       it 'charge_idが1だと出品できない' do
         @item.charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Charge Select")
+        expect(@item.errors.full_messages).to include('Charge Select')
       end
       it 'prefecture_idが空だと出品できない' do
         @item.prefecture_id = ''
@@ -69,7 +69,7 @@ RSpec.describe Item, type: :model do
       it 'prefecture_idが1だと出品できない' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture Select")
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it 'day_idが空だと出品できない' do
         @item.day_id = ''
@@ -79,7 +79,7 @@ RSpec.describe Item, type: :model do
       it 'day_idが1だと出品できない' do
         @item.day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Day Select")
+        expect(@item.errors.full_messages).to include('Day Select')
       end
       it 'priceが空だと出品できない' do
         @item.price = ''
@@ -87,19 +87,19 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角だと出品できない' do
-        @item.price = "１０００"
+        @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number", "Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Half-width number', 'Price Out of setting range')
       end
       it 'priceが299以下だと出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'priceが10,000,000以上だと出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'imageが空だと出品できない' do
         @item.image = nil
@@ -109,7 +109,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザーが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
