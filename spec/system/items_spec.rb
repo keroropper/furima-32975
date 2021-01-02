@@ -15,23 +15,24 @@ RSpec.describe '商品出品', type: :system do
       # 商品出品ページへ移動する
       visit new_item_path
       # 必要な情報を入力する
-      fill_in 'item[image]', with: @item.image
+      image_path = Rails.root.join('public/images/カエルの画像.png')
+      attach_file('item[image]', image_path)
       fill_in 'item[text]', with: @item.text
       fill_in 'item[describe]', with: @item.describe
-      select '2', from: 'item-category'
-      select '2', from: 'item-sales-status'
-      select '2', from: 'item-shipping-fee-status'
-      select '2', from: 'item-prefecture'
-      select '2', from: 'item-scheduled-delivery'
+      find("#item-category").find("option[value='2']").select_option
+      find("#item-sales-status").find("option[value='2']").select_option
+      find("#item-shipping-fee-status").find("option[value='2']").select_option
+      find("#item-prefecture").find("option[value='2']").select_option
+      find("#item-scheduled-delivery").find("option[value='2']").select_option
       fill_in 'item[price]', with: @item.price
       # 出品するとItemモデルのカウントが１上がることを確認する
-      find do
-        expect('input[name="commit"]')
-      end.click to change { Item.count }.by(1)
+      expect {
+        find('input[name="commit"]').click
+      }.to change { Item.count }.by(1)
       # トップページへ遷移する
       expect(current_path).to eq root_path
       # トップページには先ほど出品した内容の商品が存在することを確認する（画像）
-      expect(page).to have_selector("カエルの画像.png']")
+      expect(page).to have_selector("img")
       # トップページには先ほど出品した内容の発送費支払い方法が存在することを確認する（テキスト）
     end
   end
