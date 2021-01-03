@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -23,17 +23,19 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless user_signed_in? && @item.user == current_user
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in? && @item.user == current_user
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(@item.id)
-    else 
+    else
       render :edit
     end
+  end
+
+  def destroy
+    redirect_to root_path if @item.destroy
   end
 
   private
