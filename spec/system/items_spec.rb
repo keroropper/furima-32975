@@ -33,7 +33,7 @@ RSpec.describe '商品出品', type: :system do
       # トップページへ遷移する
       expect(current_path).to eq root_path
       # トップページには先ほど出品した内容の商品が存在することを確認する（画像）
-      expect(all('.item-img')[0]).to have_selector('img')
+      expect(all('.item-img-content')[0]).to have_selector("img")
       # トップページには先ほど出品した内容の発送費支払い方法が存在することを確認する（テキスト）
       expect(page).to have_content('着払い(購入者負担)')
     end
