@@ -40,5 +40,6 @@ class OrdersController < ApplicationController
       card: order_info_params[:token], # カードトークン
       currency: 'jpy'              # 通貨の種類（日本円）
     )
+    
   end
 end
