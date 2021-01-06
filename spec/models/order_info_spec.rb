@@ -17,6 +17,10 @@ RSpec.describe OrderInfo, type: :model do
       it '全ての値が記入されているとき、購入できる' do
         expect(@info).to be_valid
       end
+      it 'phone_numberは11桁以内であること（09012345678となる）' do
+        @info.phone_number = '09012345678'
+        expect(@info).to be_valid
+      end
     end
       context '商品を購入できないとき' do
         it 'post_codeが空だと購入できない' do
@@ -53,6 +57,11 @@ RSpec.describe OrderInfo, type: :model do
           @info.phone_number = '090-9999-9999'
           @info.valid?
           expect(@info.errors.full_messages).to include('Phone number Half-width number')
+        end
+        it 'phone_numberは11桁以内であること' do
+          @info.phone_number = 123456789123456
+          @info.valid?
+          expect(@info.errors.full_messages).to include("Phone number Input correctly")
         end
         it 'tokenが空では登録できないこと' do
           @info.token = nil

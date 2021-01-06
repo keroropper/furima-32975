@@ -14,6 +14,7 @@ class OrderInfo
     validates :user_id
     validates :item_id
   end
+    validates :phone_number, format: { with: /\A\d{11}\z/, message: 'Input correctly' }
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
