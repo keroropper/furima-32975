@@ -11,6 +11,8 @@ class OrderInfo
     validates :house_number
     validates :phone_number, numericality: { only_integer: true, message: 'Half-width number' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
