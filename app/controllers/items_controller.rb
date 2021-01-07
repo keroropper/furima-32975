@@ -23,7 +23,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to action: :index unless user_signed_in? && @item.user == current_user
+    unless user_signed_in? && @item.user == current_user 
+      redirect_to action: :index
+    end 
+    if @item.order.present? 
+      redirect_to action: :index
+    end
   end
 
   def update
@@ -35,7 +40,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path if @item.destroy
+    if @item.destroy
+      redirect_to root_path 
+    end
   end
 
   private
