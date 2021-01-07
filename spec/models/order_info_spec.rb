@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe OrderInfo, type: :model do
-  before do
+  before(:all) do
     @item = FactoryBot.create(:item)
     @user = FactoryBot.create(:user)
-    @info = FactoryBot.build(:order_info, item_id: @item.id, user_id: @user.id)
-    sleep(0.1)
   end
+  before(:each) do
+    @info = FactoryBot.build(:order_info, item_id: @item.id, user_id: @user.id)
+    # sleep(0.1)
+  end
+
+
 
     describe '商品購入機能' do
     context '商品を購入できるとき' do
